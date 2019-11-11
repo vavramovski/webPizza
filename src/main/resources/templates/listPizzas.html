@@ -1,0 +1,89 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Pizza Order page - Welcome and choose pizza</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+
+
+</head>
+<body>
+<header>
+    <h1>Welcome to our Pizza Delivery App</h1>
+    <form th:action="@{/}" method="POST" style="float: right">
+        <label for="search">Search</label>
+        <input type="text" name="searchID" id="search" value="pizzaID"
+               th:value="${search}">
+        <input type="submit" value="Search">
+    </form>
+    <table style="float: right;">
+        <tr>
+            <th colspan="2">
+                Your Order Status
+            </th>
+        </tr>
+        <tr>
+            <td><b>Pizza Type </b></td>
+            <td th:text="${pizzaName}" style="background: aquamarine;"></td>
+        </tr>
+        <tr>
+            <td><b>Time remaining </b></td>
+            <td th:text="${timeRemaining}" style="background: aquamarine;" id="timer"></td>
+        </tr>
+    </table>
+</header>
+<main>
+    <h2>Choose pizza:</h2>
+    <form th:action="@{/}" method="POST">
+        <input type="radio" name="pizza" value="Margherita" th:text="${pizza1}"><br/>
+        <input type="radio" name="pizza" value="Carbonara" th:text="${pizza2}"><br/>
+        <input type="radio" name="pizza" value="Vegetariana" th:text="${pizza3}"> <br/>
+        <input type="radio" name="pizza" value="Calzone" th:text="${pizza4}"><br/>
+        <input type="radio" name="pizza" value="Cheddar" th:text="${pizza5}"> <br/>
+        <input type="radio" name="pizza" value="Capricciosa" th:text="${pizza6}"><br/>
+        <input type="radio" name="pizza" value="Burger Classic" th:text="${pizza7}"><br/>
+        <input type="radio" name="pizza" value="Boston Barbecue" th:text="${pizza8}"><br/>
+        <input type="radio" name="pizza" value="Vegie Vulcano" th:text="${pizza9}"><br/>
+        <input type="radio" name="pizza" value="Boston Barbecue" th:text="${pizza10}"><br/>
+        <br/>
+        <input type="submit" value="Submit"/>
+    </form>
+</main>
+<script>
+
+    var timerTag = document.getElementById("timer").innerHTML;
+    var mins = parseInt(timerTag.split(":")[0]);
+    var secs = parseInt(timerTag.split(":")[1]);
+
+
+    var dateNumber = Date.now();
+    var date = new Date(dateNumber);
+
+    date.setMinutes(date.getMinutes() + mins);
+    date.setSeconds(date.getSeconds() + secs);
+    var countDownDate = date.getTime();
+
+    if (document.getElementById("timer").textContent !="") {
+        var x = setInterval(function () {
+
+            var now = Date.now();
+            var distance = countDownDate - now;
+
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("timer").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+    }
+</script>
+</body>
+</html>

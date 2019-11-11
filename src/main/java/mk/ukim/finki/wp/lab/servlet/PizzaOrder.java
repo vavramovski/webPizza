@@ -1,0 +1,41 @@
+package mk.ukim.finki.wp.lab.servlet;
+
+
+import org.thymeleaf.context.WebContext;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+
+
+@WebServlet(name = "PizzaOrderServlet",urlPatterns = "/PizzaOrder.do")
+public class PizzaOrder extends HttpServlet {
+    private final SpringTemplateEngine springTemplateEngine;
+
+
+    public PizzaOrder(SpringTemplateEngine springTemplateEngine) {
+        this.springTemplateEngine = springTemplateEngine;
+    }
+
+
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession();
+        WebContext webContext = new WebContext(request, response, request.getServletContext());
+        webContext.setVariable("pizzaType",session.getAttribute("pizzaType"));
+        webContext.setVariable("pizzaSize",session.getAttribute("pizzaSize"));
+        System.out.println(session.getId()+" PizzaOrder.doGet()");
+        this.springTemplateEngine.process("deliveryInfo.html", webContext, response.getWriter());
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
+        session.setAttribute("name",req.getParameter("clientName"));
+        session.setAttribute("address",req.getParameter("clientAddress"));
+        resp.sendRedirect("ConfirmationInfo.do");
+    }
+}
