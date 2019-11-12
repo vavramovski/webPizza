@@ -17,9 +17,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order placeOrder(String pizzaType, String clientName, String address) {
+    public Order placeOrder(String pizzaType, String clientName, String address, String pizzaSize) {
         long ID = orderRepository.generateID();
-        Order newOrder = new Order(pizzaType,clientName,address,ID);
+        Order newOrder = new Order(pizzaType,clientName,address,ID,pizzaSize);
         orderRepository.placeOrder(ID,newOrder);
         return newOrder;
     }

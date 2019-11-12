@@ -83,7 +83,9 @@ public class ShowPizza extends HttpServlet {
         } else {
             String pizza = req.getParameter("pizza");
             session.setAttribute("pizzaType", pizza);
-
+            Order newOrder = new Order();
+            newOrder.setPizzaType(pizza);
+            session.setAttribute("orderObject",newOrder);
             resp.sendRedirect("/selectPizzaSize.html");
         }
     }

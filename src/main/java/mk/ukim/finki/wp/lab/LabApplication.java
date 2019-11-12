@@ -14,7 +14,7 @@ import org.thymeleaf.templatemode.TemplateMode;
 @ServletComponentScan
 public class LabApplication {
 
-    @Autowired
+    /*@Autowired
     private ApplicationContext applicationContext;
 
     private final SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -34,7 +34,7 @@ public class LabApplication {
         final SpringTemplateEngine springTemplateEngine = new SpringTemplateEngine();
         springTemplateEngine.addTemplateResolver(templateResolver());
         return springTemplateEngine;
-    }
+    }*/
 
     public static void main(String[] args) {
         SpringApplication.run(LabApplication.class, args);

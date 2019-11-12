@@ -12,16 +12,17 @@ public class Order {
     private String pizzaType;
     private String clientName;
     private String clientAddress;
+    private String pizzaSize;
     private Long orderId;
     private LocalDateTime timeOrdered;
 
-    public Order(String pizzaType, String clientName, String clientAddress, Long orderId) {
+    public Order(String pizzaType, String clientName, String clientAddress, Long orderId, String pizzaSize) {
         this.pizzaType = pizzaType;
         this.clientName = clientName;
         this.clientAddress = clientAddress;
         this.orderId = orderId;
         timeOrdered= LocalDateTime.now().plusMinutes(25);
-
+        this.pizzaSize=pizzaSize;
     }
 
     public String timeRemaining(){

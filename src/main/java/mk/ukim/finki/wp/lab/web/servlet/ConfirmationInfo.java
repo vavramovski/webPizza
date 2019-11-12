@@ -33,7 +33,12 @@ public class ConfirmationInfo extends HttpServlet {
         webContext.setVariable("pizzaSize",session.getAttribute("pizzaSize"));
         Order order=orderService.placeOrder((String)session.getAttribute("pizzaType"),
                                 (String)session.getAttribute("name"),
-                                (String)session.getAttribute("address"));
+                                (String)session.getAttribute("address"),
+                (String)session.getAttribute("pizza_size"));
+
+        Order order1 = (Order) session.getAttribute("orderObject");
+        order1.setOrderId(order.getOrderId());
+        order1.setTimeOrdered(order.getTimeOrdered());
 
         webContext.setVariable("ID",order.getOrderId());
         this.springTemplateEngine.process("confirmationInfo.html", webContext, response.getWriter());

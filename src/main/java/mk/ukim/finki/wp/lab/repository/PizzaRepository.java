@@ -5,5 +5,5 @@ import mk.ukim.finki.wp.lab.model.Pizza;
 import java.util.List;
 
 public interface PizzaRepository {
-    public List<Pizza> getAllPizzas();
+     List<Pizza> getAllPizzas();
 }

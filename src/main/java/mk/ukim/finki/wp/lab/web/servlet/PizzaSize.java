@@ -1,5 +1,6 @@
 package mk.ukim.finki.wp.lab.web.servlet;
 
+import mk.ukim.finki.wp.lab.model.Order;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -31,6 +32,9 @@ public class PizzaSize extends HttpServlet {
         HttpSession session = req.getSession();
 
         session.setAttribute("pizzaSize",req.getParameter("pizza_size"));
+        Order order = (Order)session.getAttribute("orderObject");
+        order.setPizzaSize(req.getParameter("pizza_size"));
+
         resp.sendRedirect("/PizzaOrder.do");
     }
 }
