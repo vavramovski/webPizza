@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.servlet;
+package mk.ukim.finki.wp.lab.web.servlet;
 
 
 import org.thymeleaf.context.WebContext;
@@ -27,7 +27,6 @@ public class PizzaOrder extends HttpServlet {
         WebContext webContext = new WebContext(request, response, request.getServletContext());
         webContext.setVariable("pizzaType",session.getAttribute("pizzaType"));
         webContext.setVariable("pizzaSize",session.getAttribute("pizzaSize"));
-        System.out.println(session.getId()+" PizzaOrder.doGet()");
         this.springTemplateEngine.process("deliveryInfo.html", webContext, response.getWriter());
     }
 

@@ -1,4 +1,4 @@
-package mk.ukim.finki.wp.lab.servlet;
+package mk.ukim.finki.wp.lab.web.servlet;
 
 import mk.ukim.finki.wp.lab.model.Order;
 import mk.ukim.finki.wp.lab.model.Pizza;
@@ -71,7 +71,6 @@ public class ShowPizza extends HttpServlet {
         webContext.setVariable(variables.get(i), pizzas.get(i));
     }
 
-        System.out.println(session.getId()+" ShowPizza.doGet()");
         this.springTemplateEngine.process("listPizzas.html",webContext,response.getWriter());
 }
 
@@ -86,7 +85,6 @@ public class ShowPizza extends HttpServlet {
             session.setAttribute("pizzaType", pizza);
 
             resp.sendRedirect("/selectPizzaSize.html");
-            System.out.println(session.getId() + " ShowPizza.doGet()");
         }
     }
 

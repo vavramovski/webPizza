@@ -1,8 +1,7 @@
-package mk.ukim.finki.wp.lab.servlet;
+package mk.ukim.finki.wp.lab.web.servlet;
 
 import mk.ukim.finki.wp.lab.model.Order;
 import mk.ukim.finki.wp.lab.service.OrderService;
-import mk.ukim.finki.wp.lab.service.impl.OrderServiceImpl;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -32,7 +31,6 @@ public class ConfirmationInfo extends HttpServlet {
         webContext.setVariable("browser",request.getHeader("User-Agent"));
         webContext.setVariable("pizzaType",session.getAttribute("pizzaType"));
         webContext.setVariable("pizzaSize",session.getAttribute("pizzaSize"));
-        System.out.println(session.getId()+" ConfirmationInfo.doGet()");
         Order order=orderService.placeOrder((String)session.getAttribute("pizzaType"),
                                 (String)session.getAttribute("name"),
                                 (String)session.getAttribute("address"));
@@ -46,6 +44,5 @@ public class ConfirmationInfo extends HttpServlet {
         HttpSession session = req.getSession();
         session.invalidate();
         resp.sendRedirect("");
-        System.out.println(session.getId()+" ConfirmationInfo.doPost()");
     }
 }

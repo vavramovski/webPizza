@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSessionListener;
 import java.util.HashMap;
 
 @WebListener
-public class MyServletSessionListener implements HttpSessionListener {
+public class SessionListener implements HttpSessionListener {
     public static HashMap<String, HttpSession>sessionHashMap = new HashMap<>();
     @Override
     public void sessionCreated(HttpSessionEvent se) {
@@ -18,6 +18,6 @@ public class MyServletSessionListener implements HttpSessionListener {
 
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {
-        System.out.println("[WP-log] sessionDestroyed");
+        System.out.println("[WP-log] sessionDestroyed" + se.getSession().getId());
     }
 }
