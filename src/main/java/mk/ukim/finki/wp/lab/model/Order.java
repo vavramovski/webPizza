@@ -3,16 +3,20 @@ package mk.ukim.finki.wp.lab.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
+@Entity(name = "Orders")
 public class Order {
     private String pizzaType;
     private String clientName;
     private String clientAddress;
     private String pizzaSize;
+    @Id
     private Long orderId;
     private LocalDateTime timeOrdered;
 
