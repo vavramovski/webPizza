@@ -4,6 +4,8 @@ import mk.ukim.finki.wp.lab.model.Order;
 import mk.ukim.finki.wp.lab.model.Pizza;
 import mk.ukim.finki.wp.lab.service.OrderService;
 import mk.ukim.finki.wp.lab.service.PizzaService;
+import mk.ukim.finki.wp.lab.service.impl.OrderServiceImpl;
+import mk.ukim.finki.wp.lab.service.impl.PizzaServiceImpl;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -22,10 +24,10 @@ import java.util.Optional;
 public class ShowPizza extends HttpServlet {
     private final SpringTemplateEngine springTemplateEngine;
 
-    private final PizzaService pizzaService;
-    private final OrderService orderService;
+    private final PizzaServiceImpl pizzaService;
+    private final OrderServiceImpl orderService;
 
-    public ShowPizza(SpringTemplateEngine springTemplateEngine, PizzaService pizzaService, OrderService orderService) {
+    public ShowPizza(SpringTemplateEngine springTemplateEngine, PizzaServiceImpl pizzaService, OrderServiceImpl orderService) {
         this.springTemplateEngine = springTemplateEngine;
         this.pizzaService = pizzaService;
         this.orderService = orderService;
@@ -63,7 +65,7 @@ public class ShowPizza extends HttpServlet {
         variables.add("pizza9");
         variables.add("pizza10");
 
-    List<Pizza> pizzas = pizzaService.listPizzas();
+    List<Pizza> pizzas = pizzaService.getPizzas();
         for(
     int i = 0; i<variables.size();i++)
 

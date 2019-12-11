@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredients</title>
+</head>
+<body>
+<form th:method="POST" action="@{ingredients}">
+Ingredient name:
+<input type="text" name="name">
+<div>SPICY :
+    <input type="radio" name="spicy" th:value="true">True
+    <input type="radio" name="spicy" th:value="false">False
+</div>
+AMOUNT:<input type="number" name="amount" th:value="${}">
+<div>VEGGIE :
+    <input type="radio" name="veggie" th:value="true">True
+    <input type="radio" name="veggie" th:value="false">False
+</div>
+
+</form>
+</body>
+</html>
