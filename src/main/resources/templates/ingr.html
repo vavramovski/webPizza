@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    body{
+        padding: 50px;
+    }
+    div{
+        padding: 10px;
+    }
+</style>
+</head>
+<body>
+
+<form action="/ingredients">
+NAME: <input type="text" name="name" required th:value="${ingredient.name}"><br>
+
+<div>
+    Is spicy:
+TRUE<input type="radio" name="spicy">
+FALSE<input type="radio" name="spicy">
+</div>
+
+AMOUNT: <input type="number" name="amount" required th:value="${ingredient.amount}">
+
+<div>
+    Is veggie:
+TRUE<input type="radio" name="veggie">
+FALSE<input type="radio" name="veggie">
+</div>
+    <input type="submit" value="ADD" formmethod="post">
+</form>
+</body>
+</html>

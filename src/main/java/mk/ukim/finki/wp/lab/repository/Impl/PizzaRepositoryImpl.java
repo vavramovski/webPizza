@@ -31,7 +31,8 @@ public class PizzaRepositoryImpl implements PizzaRepository {
     @Override
     public Pizza editPizza(Pizza pizza, String id) {
         pizzaRepository.deleteById(id);
-        return pizzaRepository.save(pizza);
+        pizzaRepository.save(pizza);
+        return pizza;
     }
 
     @Override

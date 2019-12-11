@@ -2,8 +2,6 @@ package mk.ukim.finki.wp.lab.web.servlet;
 
 import mk.ukim.finki.wp.lab.model.Order;
 import mk.ukim.finki.wp.lab.model.Pizza;
-import mk.ukim.finki.wp.lab.service.OrderService;
-import mk.ukim.finki.wp.lab.service.PizzaService;
 import mk.ukim.finki.wp.lab.service.impl.OrderServiceImpl;
 import mk.ukim.finki.wp.lab.service.impl.PizzaServiceImpl;
 import org.thymeleaf.context.WebContext;
@@ -53,7 +51,7 @@ public class ShowPizza extends HttpServlet {
             }
         }
 
-    List<String> variables = new ArrayList<>();
+        List<String> variables = new ArrayList<>();
         variables.add("pizza1");
         variables.add("pizza2");
         variables.add("pizza3");
@@ -65,16 +63,14 @@ public class ShowPizza extends HttpServlet {
         variables.add("pizza9");
         variables.add("pizza10");
 
-    List<Pizza> pizzas = pizzaService.getPizzas();
-        for(
-    int i = 0; i<variables.size();i++)
+        List<Pizza> pizzas = pizzaService.getPizzas();
+        for (
+                int i = 0; i < variables.size(); i++) {
+            webContext.setVariable(variables.get(i), pizzas.get(i));
+        }
 
-    {
-        webContext.setVariable(variables.get(i), pizzas.get(i));
+        this.springTemplateEngine.process("listPizzas.html", webContext, response.getWriter());
     }
-
-        this.springTemplateEngine.process("listPizzas.html",webContext,response.getWriter());
-}
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -87,7 +83,7 @@ public class ShowPizza extends HttpServlet {
             session.setAttribute("pizzaType", pizza);
             Order newOrder = new Order();
             newOrder.setPizzaType(pizza);
-            session.setAttribute("orderObject",newOrder);
+            session.setAttribute("orderObject", newOrder);
             resp.sendRedirect("/selectPizzaSize.html");
         }
     }

@@ -4,7 +4,7 @@ import mk.ukim.finki.wp.lab.model.Exceptions.InvalidIngredientException;
 import mk.ukim.finki.wp.lab.model.Exceptions.PizzaNotFoundException;
 import mk.ukim.finki.wp.lab.model.Ingredient;
 import mk.ukim.finki.wp.lab.model.Pizza;
-import mk.ukim.finki.wp.lab.repository.PizzaRepository;
+import mk.ukim.finki.wp.lab.repository.Impl.PizzaRepositoryImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("pizzas")
 public class PizzasAPI {
-    private final PizzaRepository pizzaRepository;
+    private final PizzaRepositoryImpl pizzaRepository;
 
-    public PizzasAPI(PizzaRepository pizzaRepository) {
+    public PizzasAPI(PizzaRepositoryImpl pizzaRepository) {
         this.pizzaRepository = pizzaRepository;
     }
 
@@ -31,8 +31,11 @@ public class PizzasAPI {
         return pizzaRepository.addPizza(pizza);
     }
 
+
     @PutMapping("/{id}")
-    public Pizza editPizza(@RequestBody Pizza pizza, @PathVariable String id) {
+    public Pizza editPizza(
+                           @RequestBody Pizza pizza,
+                           @PathVariable String id) {
         return pizzaRepository.editPizza(pizza, id);
     }
 

@@ -30,10 +30,11 @@ public class IngredientRepositoryImpl implements IngredientsRepository {
         if (ingredientsRepository.findById(ingredient.getName()).isPresent())
             throw new InvalidIngredientException();
 
-        if (getCount()>3)
+        if (getCount()>7)
             throw new IngredientsLimitExceededException();
 
-        return ingredientsRepository.save(ingredient);
+        ingredientsRepository.save(ingredient);
+        return ingredient;
     }
 
     @Override
@@ -49,7 +50,8 @@ public class IngredientRepositoryImpl implements IngredientsRepository {
     @Override
     public Ingredient editIngredient(Ingredient newIngredient, String IDoldIngredient) {
         ingredientsRepository.deleteById(IDoldIngredient);
-        return ingredientsRepository.save(newIngredient);
+        ingredientsRepository.save(newIngredient);
+        return newIngredient;
     }
 
     @Override
