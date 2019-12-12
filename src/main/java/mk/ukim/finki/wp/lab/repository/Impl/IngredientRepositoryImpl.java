@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
+import javax.management.Query;
 import java.util.List;
 import java.util.Optional;
 
@@ -73,6 +74,7 @@ public class IngredientRepositoryImpl implements IngredientsRepository {
     }
 
     //todo:might fail
+
     public List<Pizza> findPizzasByIngredient(String id) {
         return pizzaRepository.findPizzaByIngredients(id);
     }

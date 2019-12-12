@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -18,11 +15,11 @@ import java.util.List;
 @Entity(name = "Pizzas")
 public class Pizza {
     @Id
-    @Column(name = "pizza_name")
     private String name;
     private String description;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = Ingredient.class)
+    @Column(name = "PizzaIng")
     private List<Ingredient> ingredients;
     private Boolean veggie;
 

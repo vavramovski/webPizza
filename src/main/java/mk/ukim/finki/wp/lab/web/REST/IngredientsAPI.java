@@ -5,13 +5,10 @@ import mk.ukim.finki.wp.lab.model.Exceptions.InvalidIngredientException;
 import mk.ukim.finki.wp.lab.model.Ingredient;
 import mk.ukim.finki.wp.lab.model.Pizza;
 import mk.ukim.finki.wp.lab.service.impl.IngredientServiceImpls;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 @RestController
@@ -25,21 +22,18 @@ public class IngredientsAPI {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Ingredient createIngredient(@RequestParam String name, @RequestParam Boolean spicy,
-                                       @RequestParam Float amount, @RequestParam Boolean veggie) {
+    public Ingredient createIngredient(@RequestBody Ingredient ingredient) {
         try {
-            return ingredientsService.addIngredient(new Ingredient(name, spicy, amount, veggie));
+            return ingredientsService.addIngredient(ingredient);
         } catch (Exception e) {
             throw new IngredientsLimitExceededException();
         }
     }
 
     @PatchMapping("/{id}")
-    public Ingredient editIngredient(@RequestParam String name, @RequestParam Boolean spicy,
-                                     @RequestParam Float amount, @RequestParam Boolean veggie,
-                                     @PathVariable String id) {
+    public Ingredient editIngredient(@RequestBody Ingredient ingredient, @PathVariable String id) {
         try {
-            return ingredientsService.editIngredient(new Ingredient(name, spicy, amount, veggie), id);
+            return ingredientsService.editIngredient(ingredient, id);
         } catch (Exception e) {
             throw new IngredientsLimitExceededException();
         }
@@ -53,7 +47,7 @@ public class IngredientsAPI {
 
     //TODO: GET PAGEABLE INGREDIENTS
     @GetMapping("")
-    public Page<Ingredient> sortedIngredients(@RequestParam Integer pagenum,@RequestParam Integer size) {
+    public Page<Ingredient> sortedIngredients(@RequestParam Integer pagenum, @RequestParam Integer size) {
         return ingredientsService.getPages(pagenum, size);
     }
 

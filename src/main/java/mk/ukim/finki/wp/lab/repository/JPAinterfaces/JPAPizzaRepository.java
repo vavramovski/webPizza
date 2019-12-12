@@ -9,5 +9,9 @@ import java.util.List;
 
 public interface JPAPizzaRepository extends JpaRepository<Pizza,String> {
 
-    List<Pizza> findPizzaByIngredients(String ingredient);
+    /*@Query("select p from Pizza p")
+    List<Pizza> strings();*/
+
+    //@Query("select p from Pizza p join PizzaIng i on (i.PIZZA_NAME=p.name)")
+    List<Pizza> findPizzaByIngredients(@Param("ingredient") String ingredient);
 }

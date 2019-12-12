@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +21,6 @@ import javax.validation.constraints.Max;
 public class Ingredient {
 
     @Id
-    @Column(unique = true, name = "ingredient_name")
     private String name;
 
     private Boolean spicy;
