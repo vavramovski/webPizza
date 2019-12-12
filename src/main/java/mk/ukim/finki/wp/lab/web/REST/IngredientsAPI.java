@@ -22,7 +22,7 @@ public class IngredientsAPI {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Ingredient createIngredient(@RequestBody Ingredient ingredient) {
+    public Ingredient createIngredient(@RequestBody Ingredient ingredient ) {
         try {
             return ingredientsService.addIngredient(ingredient);
         } catch (Exception e) {

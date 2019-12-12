@@ -1,6 +1,7 @@
 package mk.ukim.finki.wp.lab.service.impl;
 
 import mk.ukim.finki.wp.lab.model.Exceptions.PizzaNotFoundException;
+import mk.ukim.finki.wp.lab.model.Ingredient;
 import mk.ukim.finki.wp.lab.model.Pizza;
 import mk.ukim.finki.wp.lab.repository.PizzaRepository;
 import mk.ukim.finki.wp.lab.service.PizzaService;
@@ -30,6 +31,12 @@ public class PizzaServiceImpl implements PizzaService  {
 
     @Override
     public Pizza addPizza(Pizza pizza) {
+        for (Ingredient i:pizza.getIngredients())
+            if (!i.getVeggie()) {
+                pizza.setVeggie(false);
+                break;
+            }
+            
         return pizzaRepository.addPizza(pizza);
     }
 

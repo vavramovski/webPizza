@@ -23,8 +23,14 @@ public class Pizza {
     private List<Ingredient> ingredients;
     private Boolean veggie;
 
+
+
     @Override
     public String toString() {
-        return name + "  " + description;
+        String str="";
+        for (Ingredient i : ingredients) {
+            str+=i.toString()+" ";
+        }
+        return name + "  " + str;
     }
 }
