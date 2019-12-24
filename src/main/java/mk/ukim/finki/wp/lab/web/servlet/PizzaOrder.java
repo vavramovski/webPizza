@@ -2,6 +2,7 @@ package mk.ukim.finki.wp.lab.web.servlet;
 
 
 import mk.ukim.finki.wp.lab.model.Order;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -11,7 +12,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 
-
+@CrossOrigin(origins = "http://localhost:3000")
 @WebServlet(name = "PizzaOrderServlet",urlPatterns = "/PizzaOrder.do")
 public class PizzaOrder extends HttpServlet {
     private final SpringTemplateEngine springTemplateEngine;

@@ -39,16 +39,21 @@
 <main>
     <h2>Choose pizza:</h2>
     <form th:action="@{/}" method="POST">
-        <input type="radio" name="pizza" value="Margherita" th:text="${pizza1}"><br/>
-        <input type="radio" name="pizza" value="Carbonara" th:text="${pizza2}"><br/>
-        <input type="radio" name="pizza" value="Vegetariana" th:text="${pizza3}"> <br/>
-        <input type="radio" name="pizza" value="Calzone" th:text="${pizza4}"><br/>
-        <input type="radio" name="pizza" value="Cheddar" th:text="${pizza5}"> <br/>
-        <input type="radio" name="pizza" value="Capricciosa" th:text="${pizza6}"><br/>
-        <input type="radio" name="pizza" value="Burger Classic" th:text="${pizza7}"><br/>
-        <input type="radio" name="pizza" value="Boston Barbecue" th:text="${pizza8}"><br/>
-        <input type="radio" name="pizza" value="Vegie Vulcano" th:text="${pizza9}"><br/>
-        <input type="radio" name="pizza" value="Boston Barbecue" th:text="${pizza10}"><br/>
+        <div th:each="pizza: ${pizzas}">
+
+            <input type="radio" name="pizzaName" th:value="${pizza.name}" th:text="${pizza.name}"><br/>
+
+        </div>
+        <!--<input type="radio" name="pizzaName" value="Margherita" th:text="${pizza1}"><br/>
+        <input type="radio" name="pizzaName" value="Carbonara" th:text="${pizza2}"><br/>
+        <input type="radio" name="pizzaName" value="Vegetariana" th:text="${pizza3}"> <br/>
+        <input type="radio" name="pizzaName" value="Calzone" th:text="${pizza4}"><br/>
+        <input type="radio" name="pizzaName" value="Cheddar" th:text="${pizza5}"> <br/>
+        <input type="radio" name="pizzaName" value="Capricciosa" th:text="${pizza6}"><br/>
+        <input type="radio" name="pizzaName" value="Burger Classic" th:text="${pizza7}"><br/>
+        <input type="radio" name="pizzaName" value="Boston Barbecue" th:text="${pizza8}"><br/>
+        <input type="radio" name="pizzaName" value="Vegie Vulcano" th:text="${pizza9}"><br/>
+        <input type="radio" name="pizzaName" value="Boston Barbecue" th:text="${pizza10}"><br/>-->
         <br/>
         <input type="submit" value="Submit"/>
     </form>

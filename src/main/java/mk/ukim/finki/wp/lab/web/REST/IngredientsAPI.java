@@ -9,10 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping(path = "/ingredients")
+@RequestMapping(path = "ingredients")
 public class IngredientsAPI {
     private final IngredientServiceImpls ingredientsService;
 
@@ -22,7 +24,8 @@ public class IngredientsAPI {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Ingredient createIngredient(@RequestBody Ingredient ingredient ) {
+    public Ingredient createIngredient(@RequestBody Ingredient ingredient, HttpServletRequest req) {
+
         try {
             return ingredientsService.addIngredient(ingredient);
         } catch (Exception e) {

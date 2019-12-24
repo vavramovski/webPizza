@@ -4,13 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
 
 //@Max(value = 3)
 @Getter
@@ -29,4 +25,8 @@ public class Ingredient {
 
     private Boolean veggie;
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

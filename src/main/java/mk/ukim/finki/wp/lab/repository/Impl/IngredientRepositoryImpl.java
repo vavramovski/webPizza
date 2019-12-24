@@ -12,7 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import javax.management.Query;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,12 +40,17 @@ public class IngredientRepositoryImpl implements IngredientsRepository {
 
     @Override
     public void deleteIngredient(Ingredient ingredient) {
+        List<Pizza>pizzas=pizzaRepository.findAll();
+        for (Pizza p:pizzas) {
+            p.getIngredients().remove(ingredient);
+        }
         ingredientsRepository.delete(ingredient);
     }
 
     @Override
     public void deleteIngredientByID(String id) {
-        ingredientsRepository.deleteById(id);
+        Ingredient ingr = getIngredientByID(id).orElseThrow(InvalidIngredientException::new);
+        deleteIngredient(ingr);
     }
 
     @Override
@@ -76,7 +81,13 @@ public class IngredientRepositoryImpl implements IngredientsRepository {
     //todo:might fail
 
     public List<Pizza> findPizzasByIngredient(String id) {
-        return pizzaRepository.findPizzaByIngredients(id);
+        List<Pizza> pizzas = new LinkedList<>();
+        Ingredient ingr = getIngredientByID(id).orElseThrow(InvalidIngredientException::new);
+        for (Pizza p :pizzaRepository.findAll()) {
+            if (p.getIngredients().contains(ingr))
+                pizzas.add(p);
+        }
+        return pizzas;
     }
 
 

@@ -4,6 +4,7 @@ import mk.ukim.finki.wp.lab.model.Order;
 import mk.ukim.finki.wp.lab.model.Pizza;
 import mk.ukim.finki.wp.lab.service.impl.OrderServiceImpl;
 import mk.ukim.finki.wp.lab.service.impl.PizzaServiceImpl;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.thymeleaf.context.WebContext;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @WebServlet(name = "ShowPizzaServlet", urlPatterns = "")
 public class ShowPizza extends HttpServlet {
     private final SpringTemplateEngine springTemplateEngine;
@@ -51,7 +53,9 @@ public class ShowPizza extends HttpServlet {
             }
         }
 
-        List<String> variables = new ArrayList<>();
+        List<Pizza> pizzas = pizzaService.getPizzas();
+
+        /*List<String> variables = new ArrayList<>();
         variables.add("pizza1");
         variables.add("pizza2");
         variables.add("pizza3");
@@ -62,13 +66,12 @@ public class ShowPizza extends HttpServlet {
         variables.add("pizza8");
         variables.add("pizza9");
         variables.add("pizza10");
-
-        List<Pizza> pizzas = pizzaService.getPizzas();
         for (
                 int i = 0; i < variables.size(); i++) {
             webContext.setVariable(variables.get(i), pizzas.get(i));
-        }
+        }*/
 
+        webContext.setVariable("pizzas",pizzas);
         this.springTemplateEngine.process("listPizzas.html", webContext, response.getWriter());
     }
 

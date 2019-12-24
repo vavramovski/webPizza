@@ -1,19 +1,15 @@
 package mk.ukim.finki.wp.lab.web.REST;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import mk.ukim.finki.wp.lab.model.Exceptions.InvalidIngredientException;
 import mk.ukim.finki.wp.lab.model.Exceptions.PizzaNotFoundException;
 import mk.ukim.finki.wp.lab.model.Ingredient;
 import mk.ukim.finki.wp.lab.model.IngredientWrapper;
 import mk.ukim.finki.wp.lab.model.Pizza;
 import mk.ukim.finki.wp.lab.repository.Impl.PizzaRepositoryImpl;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("pizzas")
 public class PizzasAPI {
